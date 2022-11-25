@@ -1,5 +1,7 @@
 import React from "react";
 import { Todo } from "./components/Todo";
+import Modal from "./components/Modal";
+import Backdrop from "./components/Backdrop";
 
 function App() {
   return (
@@ -10,6 +12,9 @@ function App() {
         <Todo text="Learn NextJS" />
         <Todo text="Practice NextJS" />
       </div>
+
+      <Modal />
+      <Backdrop />
     </React.Fragment>
   );
 }
