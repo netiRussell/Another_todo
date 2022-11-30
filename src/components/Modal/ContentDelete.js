@@ -1,13 +1,15 @@
-function Modal() {
+import React from "react";
+
+function ContentDelete() {
   return (
-    <div className="modal">
+    <React.Fragment>
       <p>Are you sure?</p>
       <div className="buttons">
         <button className="buttton">Confirmed</button>
         <button className="buttton">Actually... No</button>
       </div>
-    </div>
+    </React.Fragment>
   );
 }
 
-export default Modal;
+export default ContentDelete;

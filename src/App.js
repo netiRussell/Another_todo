@@ -1,7 +1,7 @@
 import React from "react";
 import { Todo } from "./components/Todo";
-import Modal from "./components/Modal";
-import Backdrop from "./components/Backdrop";
+import Modal from "./components/Modal/Modal";
+import Backdrop from "./components/Modal/Backdrop";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
         <Todo text="Practice NextJS" />
       </div>
 
-      <Modal />
+      <Modal type="" />
       <Backdrop />
     </React.Fragment>
   );
