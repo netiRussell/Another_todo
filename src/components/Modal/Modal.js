@@ -1,8 +1,8 @@
 import ContentDelete from "./ContentDelete";
 import ContentChange from "./ContentChange";
 
-function Modal({ type }) {
-  return <div className="modal">{type === "delete" ? <ContentDelete /> : <ContentChange />}</div>;
+function Modal({ modalDelete, modalToggle }) {
+  return <div className="modal">{modalDelete === true ? <ContentDelete modalToggle={modalToggle} /> : <ContentChange modalToggle={modalToggle} />}</div>;
 }
 
 export default Modal;

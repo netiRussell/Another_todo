@@ -1,12 +1,31 @@
 import React from "react";
+import { useState } from "react";
 
-function ContentChange() {
+function ContentChange({ modalToggle }) {
+  const [newTitle, setNewTitle] = useState();
+
+  const changeTitle = function (event) {
+    setNewTitle(event.target.value);
+  };
+
+  const submitForm = function (event) {
+    event.preventDefault();
+  };
+
   return (
     <React.Fragment>
-      <p>Please, provide title</p>
       <div className="buttons">
-        <button className="buttton">Confirmed</button>
-        <button className="buttton">Actually... No</button>
+        <form onSubmit={submitForm}>
+          <div className="form_title">
+            <label>Please, provide title:</label>
+            <input type="text" onChange={changeTitle} />
+          </div>
+          <div>
+            <button type="submit" className="buttton" onClick={modalToggle}>
+              OK
+            </button>
+          </div>
+        </form>
       </div>
     </React.Fragment>
   );

@@ -1,23 +1,25 @@
-import { useState } from "react";
+/*
+  modalToggle:
+  true - delete type
+  false - change title type
+*/
 
-function Todo({ text }) {
-  const [modalState, setModalState] = useState(text);
-
-  const deleteHandler = function () {
-    console.log("Clicked");
+function Todo({ text, modalToggle }) {
+  const changeHandler = function () {
+    modalToggle(false);
   };
 
-  const changeTitle = function () {
-    setModalState();
+  const deleteHandler = function () {
+    modalToggle(true);
   };
 
   return (
     <div className="card">
       <h2>{text}</h2>
-      <button className="buttton" onClick={deleteHandler}>
+      <button className="buttton" onClick={changeHandler}>
         Change title
       </button>
-      <button className="buttton" onClick={changeTitle}>
+      <button className="buttton" onClick={deleteHandler}>
         Delete
       </button>
     </div>
