@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Todo } from "./components/Todo";
 import Modal from "./components/Modal/Modal";
 import Backdrop from "./components/Modal/Backdrop";
+import Filter from "./components/Filter";
+import AddForm from "./components/AddForm";
 
 function App() {
   const [modalStatus, setModalState] = useState(false);
@@ -23,14 +25,8 @@ function App() {
       <div className="content">
         <header>
           <h1 className="title">My todos</h1>
-          <div className="filter">
-            <label id="select">Filter by</label>
-            <select id="select">
-              <option>2023</option>
-              <option>2022</option>
-              <option>2021</option>
-            </select>
-          </div>
+          <AddForm />
+          <Filter />
         </header>
         <div className="wrapper">
           <Todo modalToggle={modalToggle} text="Learn React" />
