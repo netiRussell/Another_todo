@@ -48,10 +48,24 @@ body {
   gap: 10px;
 }
 
+header {
+  padding: 3rem 6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .title {
   font-size: 3rem;
-  padding: 30px;
   color: white;
+}
+
+.filter {
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  color: #ffffff;
 }
 
 .wrapper {

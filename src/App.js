@@ -20,11 +20,23 @@ function App() {
 
   return (
     <React.Fragment>
-      <h1 className="title">My todos</h1>
-      <div className="wrapper">
-        <Todo modalToggle={modalToggle} text="Learn React" />
-        <Todo modalToggle={modalToggle} text="Learn NextJS" />
-        <Todo modalToggle={modalToggle} text="Practice NextJS" />
+      <div className="content">
+        <header>
+          <h1 className="title">My todos</h1>
+          <div className="filter">
+            <label id="select">Filter by</label>
+            <select id="select">
+              <option>2023</option>
+              <option>2022</option>
+              <option>2021</option>
+            </select>
+          </div>
+        </header>
+        <div className="wrapper">
+          <Todo modalToggle={modalToggle} text="Learn React" />
+          <Todo modalToggle={modalToggle} text="Learn NextJS" />
+          <Todo modalToggle={modalToggle} text="Practice NextJS" />
+        </div>
       </div>
 
       <div className={modalStatus ? null : "hidden"} id="changeFunctionality">

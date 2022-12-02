@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
 
-function ContentChange({ modalToggle }) {
-  const [newTitle, setNewTitle] = useState();
+function ContentChange({ modalToggle, sendInfo }) {
+  const [newTitle, setNewTitle] = useState("");
 
   const changeTitle = function (event) {
     setNewTitle(event.target.value);
@@ -10,6 +10,7 @@ function ContentChange({ modalToggle }) {
 
   const submitForm = function (event) {
     event.preventDefault();
+    sendInfo(newTitle);
   };
 
   return (
