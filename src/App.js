@@ -10,6 +10,28 @@ function App() {
   const [modalStatus, setModalState] = useState(false);
   const [modalDelete, setModalDelete] = useState(false);
 
+  const todo_array = [
+    {
+      title: "Change smth",
+      year: 2021,
+    },
+
+    {
+      title: "Learn React JS",
+      year: 2021,
+    },
+
+    {
+      title: "Remember JS",
+      year: 2022,
+    },
+
+    {
+      title: "Learn Next JS",
+      year: 2023,
+    },
+  ];
+
   const modalToggle = function (type) {
     /*
       modalToggle(type argument):
@@ -29,9 +51,9 @@ function App() {
           <Filter />
         </header>
         <div className="wrapper">
-          <Todo modalToggle={modalToggle} text="Learn React" />
-          <Todo modalToggle={modalToggle} text="Learn NextJS" />
-          <Todo modalToggle={modalToggle} text="Practice NextJS" />
+          {todo_array.map(function (value, index) {
+            return <Todo modalToggle={modalToggle} text={value.title} year={value.year} key={index} />;
+          })}
         </div>
       </div>
 
