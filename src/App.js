@@ -7,10 +7,7 @@ import Filter from "./components/Filter";
 import AddForm from "./components/AddForm";
 
 function App() {
-  const [modalStatus, setModalState] = useState(false);
-  const [modalDelete, setModalDelete] = useState(false);
-
-  const todo_array = [
+  const DUMMY_DATA = [
     {
       title: "Change smth",
       year: 2021,
@@ -32,6 +29,10 @@ function App() {
     },
   ];
 
+  const [modalStatus, setModalState] = useState(false);
+  const [modalDelete, setModalDelete] = useState(false);
+  const [todoArray, setTodoArray] = useState(DUMMY_DATA);
+
   const modalToggle = function (type) {
     /*
       modalToggle(type argument):
@@ -47,11 +48,11 @@ function App() {
       <div className="content">
         <header>
           <h1 className="title">My todos</h1>
-          <AddForm />
+          <AddForm setTodoArray={setTodoArray} />
           <Filter />
         </header>
         <div className="wrapper">
-          {todo_array.map(function (value, index) {
+          {todoArray.map(function (value, index) {
             return <Todo modalToggle={modalToggle} text={value.title} year={value.year} key={index} />;
           })}
         </div>

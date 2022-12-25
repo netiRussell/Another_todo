@@ -4,7 +4,7 @@
   false - change title type
 */
 
-function Todo({ text, modalToggle }) {
+function Todo({ text, year, modalToggle }) {
   const changeHandler = function () {
     modalToggle(false);
   };
@@ -15,7 +15,9 @@ function Todo({ text, modalToggle }) {
 
   return (
     <div className="card">
-      <h2>{text}</h2>
+      <h2>
+        {text} ({year})
+      </h2>
       <button className="buttton" onClick={changeHandler}>
         Change title
       </button>
