@@ -10,27 +10,29 @@ function App() {
   const DUMMY_DATA = [
     {
       title: "Change smth",
-      year: 2021,
+      year: "2021",
     },
 
     {
       title: "Learn React JS",
-      year: 2021,
+      year: "2021",
     },
 
     {
       title: "Remember JS",
-      year: 2022,
+      year: "2022",
     },
 
     {
       title: "Learn Next JS",
-      year: 2023,
+      year: "2023",
     },
   ];
 
+  // States
   const [modalStatus, setModalState] = useState(false);
   const [modalDelete, setModalDelete] = useState(false);
+  const [filterYear, setFilterYear] = useState("none");
   const [todoArray, setTodoArray] = useState(DUMMY_DATA);
 
   const modalToggle = function (type) {
@@ -43,18 +45,28 @@ function App() {
     setModalDelete(type);
   };
 
+  const filteredData = todoArray.filter(function (value, index) {
+    return value.year.toString() === filterYear.toString() || filterYear.toString().toLowerCase() === "none";
+  });
+
+  console.log(filteredData);
+
   return (
     <React.Fragment>
       <div className="content">
         <header>
           <h1 className="title">My todos</h1>
           <AddForm setTodoArray={setTodoArray} />
-          <Filter />
+          <Filter setFilterYear={setFilterYear} />
         </header>
         <div className="wrapper">
-          {todoArray.map(function (value, index) {
-            return <Todo modalToggle={modalToggle} text={value.title} year={value.year} key={index} />;
-          })}
+          {filteredData.length > 0 ? (
+            filteredData.map(function (value, index) {
+              return <Todo modalToggle={modalToggle} text={value.title} year={value.year} key={index} />;
+            })
+          ) : (
+            <h3 className="text_center">No todos provided yet</h3>
+          )}
         </div>
       </div>
 
