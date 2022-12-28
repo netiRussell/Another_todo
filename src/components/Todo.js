@@ -14,7 +14,7 @@ function Todo({ text, year, modalToggle }) {
   };
 
   return (
-    <div className="card">
+    <li className="card">
       <h2>
         {text} ({year})
       </h2>
@@ -24,7 +24,7 @@ function Todo({ text, year, modalToggle }) {
       <button className="buttton" onClick={deleteHandler}>
         Delete
       </button>
-    </div>
+    </li>
   );
 }
 

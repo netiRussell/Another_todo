@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function AddForm({ setTodoArray }) {
+function AddForm({ toggleAddForm, setTodoArray }) {
   const [title, setTitle] = useState("");
   const [year, setYear] = useState(new Date().getFullYear());
 
@@ -16,6 +16,8 @@ function AddForm({ setTodoArray }) {
         ...prevData,
       ];
     });
+
+    toggleAddForm();
   };
 
   return (
@@ -44,9 +46,12 @@ function AddForm({ setTodoArray }) {
             />
           </section>
         </div>
-        <div>
+        <div className="row">
           <button type="submit" className="buttton">
-            Add new todo
+            Confirm
+          </button>
+          <button type="button" className="buttton" onClick={toggleAddForm}>
+            Cancel
           </button>
         </div>
       </form>

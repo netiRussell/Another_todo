@@ -12,6 +12,10 @@ body {
   display: none;
 }
 
+.container {
+  width: 100%;
+}
+
 .backdrop {
   top: 0;
   left: 0;
@@ -48,10 +52,18 @@ body {
   gap: 10px;
 }
 
+.row,
+.form_title {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 10px;
+}
+
 header {
   padding: 3rem 6rem;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
   align-items: center;
 }
 
@@ -63,7 +75,6 @@ header {
 .filter {
   font-size: 1.5rem;
   display: flex;
-  justify-content: space-between;
   gap: 10px;
   color: #ffffff;
 }
@@ -89,6 +100,7 @@ header {
   margin: 0 auto;
   border-radius: 10px;
   color: #333435;
+  list-style-type: none;
 }
 
 .buttton {
@@ -98,10 +110,6 @@ header {
 }
 
 .form_title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
   padding-bottom: 5px;
 }
 
