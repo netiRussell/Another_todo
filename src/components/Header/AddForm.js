@@ -11,7 +11,7 @@ function AddForm({ toggleAddForm, setTodoArray }) {
       return [
         {
           title: title,
-          year: year,
+          year: +year,
         },
         ...prevData,
       ];

@@ -2,30 +2,36 @@ import React from "react";
 import { useState } from "react";
 import Modal from "./components/Modal/Modal";
 import Backdrop from "./components/Modal/Backdrop";
-import Filter from "./components/Filter";
-import AddForm from "./components/AddForm";
-import TodoList from "./components/TodoList";
+import Filter from "./components/Header/Filter";
+import AddForm from "./components/Header/AddForm";
+import TodoList from "./components/Content/TodoList";
+import Chart from "./components/Chart/Chart";
 
 function App() {
   const DUMMY_DATA = [
     {
       title: "Change smth",
-      year: "2021",
+      year: 2021,
     },
 
     {
       title: "Learn React JS",
-      year: "2021",
+      year: 2021,
     },
 
     {
       title: "Remember JS",
-      year: "2022",
+      year: 2022,
+    },
+
+    {
+      title: "test",
+      year: 2016,
     },
 
     {
       title: "Learn Next JS",
-      year: "2023",
+      year: 2023,
     },
   ];
 
@@ -35,6 +41,19 @@ function App() {
   const [addFormStatus, setAddFormStatus] = useState(false);
   const [filterYear, setFilterYear] = useState("none");
   const [todoArray, setTodoArray] = useState(DUMMY_DATA);
+
+  // Data for chart
+  const dataPoints = [];
+  todoArray.forEach((value) => {
+    for (let i = 0; i < dataPoints.length; i++) {
+      if (dataPoints[i]?.year === value.year) {
+        dataPoints[i].value++;
+        return null;
+      }
+    }
+    dataPoints.push({ value: 1, year: value.year });
+  });
+  dataPoints.sort((a, b) => a.year - b.year);
 
   const modalToggle = function (type) {
     setModalState(!modalStatus);
@@ -64,8 +83,11 @@ function App() {
               </button>
             </div>
           )}
-          <Filter setFilterYear={setFilterYear} />
+          <Filter setFilterYear={setFilterYear} dataPoints={dataPoints} />
         </header>
+
+        <Chart dataPoints={dataPoints} />
+
         <ul className="wrapper">
           <TodoList modalToggle={modalToggle} todoArray={todoArray} filterYear={filterYear}></TodoList>
         </ul>
