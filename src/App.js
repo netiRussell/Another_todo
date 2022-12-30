@@ -40,7 +40,7 @@ function App() {
   const [modalDelete, setModalDelete] = useState(false);
   const [addFormStatus, setAddFormStatus] = useState(false);
   const [filterYear, setFilterYear] = useState("none");
-  const [todoArray, setTodoArray] = useState(DUMMY_DATA);
+  const [todoArray, setTodoArray] = useState([...DUMMY_DATA].sort((a, b) => a.year - b.year));
 
   // Data for chart
   const dataPoints = [];
@@ -48,7 +48,7 @@ function App() {
     for (let i = 0; i < dataPoints.length; i++) {
       if (dataPoints[i]?.year === value.year) {
         dataPoints[i].value++;
-        return null;
+        return;
       }
     }
     dataPoints.push({ value: 1, year: value.year });

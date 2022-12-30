@@ -3,9 +3,14 @@ import { useState } from "react";
 function AddForm({ toggleAddForm, setTodoArray }) {
   const [title, setTitle] = useState("");
   const [year, setYear] = useState(new Date().getFullYear());
+  const [isValid, setIsValid] = useState(true);
 
   const addNewTodo = function (event) {
     event.preventDefault();
+    if (title.trim().length === 0) {
+      setIsValid(false);
+      return;
+    }
 
     setTodoArray((prevData) => {
       return [
@@ -14,7 +19,7 @@ function AddForm({ toggleAddForm, setTodoArray }) {
           year: +year,
         },
         ...prevData,
-      ];
+      ].sort((a, b) => a.year - b.year);
     });
 
     toggleAddForm();
@@ -23,13 +28,16 @@ function AddForm({ toggleAddForm, setTodoArray }) {
   return (
     <div>
       <form onSubmit={addNewTodo}>
-        <div className="form_title">
-          <section>
+        <div className={"form_title"}>
+          <section className={isValid ? "" : "invalid_title"}>
             <label>Title : </label>
             <input
               type="text"
               value={title}
               onChange={(event) => {
+                if (event.target.value.trim().length > 0) {
+                  setIsValid(true);
+                }
                 setTitle(event.target.value);
               }}
             />

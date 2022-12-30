@@ -152,3 +152,11 @@ header {
   align-items: center;
   color: #ffffff;
 }
+
+.invalid_title label {
+  color: #860000;
+}
+
+.invalid_title input {
+  border-color: #ff6f6f;
+}
