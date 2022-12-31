@@ -1,4 +1,5 @@
 import { useState } from "react";
+import StyledButton from "../General/Button";
 
 function AddForm({ toggleAddForm, setTodoArray }) {
   const [title, setTitle] = useState("");
@@ -58,9 +59,9 @@ function AddForm({ toggleAddForm, setTodoArray }) {
           <button type="submit" className="buttton">
             Confirm
           </button>
-          <button type="button" className="buttton" onClick={toggleAddForm}>
+          <StyledButton type="button" onClick={toggleAddForm}>
             Cancel
-          </button>
+          </StyledButton>
         </div>
       </form>
     </div>
