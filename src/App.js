@@ -93,7 +93,7 @@ function App() {
         </ul>
       </div>
 
-      <div className={modalStatus ? null : "hidden"} id="changeFunctionality">
+      <div className={`w-modal ${modalStatus ? null : "hidden"}`} id="changeFunctionality">
         <Modal modalToggle={modalToggle} modalDelete={modalDelete} />
         <Backdrop modalToggle={modalToggle} />
       </div>
