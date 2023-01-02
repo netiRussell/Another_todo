@@ -1,5 +1,6 @@
 import { useState } from "react";
-import StyledButton from "../General/Button";
+import StyledButton from "../General/StyledButton";
+import CSSModuleButton from "../General/CSSModuleButton";
 
 function AddForm({ toggleAddForm, setTodoArray }) {
   const [title, setTitle] = useState("");
@@ -56,9 +57,7 @@ function AddForm({ toggleAddForm, setTodoArray }) {
           </section>
         </div>
         <div className="row">
-          <button type="submit" className="buttton">
-            Confirm
-          </button>
+          <CSSModuleButton type="submit" onClick={null} content="Confirm" />
           <StyledButton type="button" onClick={toggleAddForm}>
             Cancel
           </StyledButton>
