@@ -12,8 +12,8 @@ function TodoList({ todoArray, filterYear, modalToggle }) {
 
   return (
     <React.Fragment>
-      {filteredData.map(function (value, index) {
-        return <Todo modalToggle={modalToggle} text={value.title} year={value.year} key={index} />;
+      {filteredData.map(function (value) {
+        return <Todo modalToggle={modalToggle} text={value.title} year={value.year} key={value.id} id={value.id} />;
       })}
     </React.Fragment>
   );

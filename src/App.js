@@ -12,26 +12,31 @@ function App() {
     {
       title: "Change smth",
       year: 2021,
+      id: 1,
     },
 
     {
       title: "Learn React JS",
       year: 2021,
+      id: 2,
     },
 
     {
       title: "Remember JS",
       year: 2022,
+      id: 3,
     },
 
     {
       title: "test",
       year: 2016,
+      id: 4,
     },
 
     {
       title: "Learn Next JS",
       year: 2023,
+      id: 5,
     },
   ];
 
@@ -41,8 +46,9 @@ function App() {
   const [addFormStatus, setAddFormStatus] = useState(false);
   const [filterYear, setFilterYear] = useState("none");
   const [todoArray, setTodoArray] = useState([...DUMMY_DATA].sort((a, b) => a.year - b.year));
+  const [actionData, setActionData] = useState();
 
-  // Data for chart
+  // Data for the chart
   const dataPoints = [];
   todoArray.forEach((value) => {
     for (let i = 0; i < dataPoints.length; i++) {
@@ -55,14 +61,16 @@ function App() {
   });
   dataPoints.sort((a, b) => a.year - b.year);
 
-  const modalToggle = function (type) {
+  const modalToggle = function (type, actionData) {
     setModalState(!modalStatus);
-    setModalDelete(type);
+    setActionData(actionData);
+
     /*
       modalToggle(type argument):
       true - delete type
       false - change title type
     */
+    setModalDelete(type);
   };
 
   const toggleAddForm = function () {
@@ -94,8 +102,8 @@ function App() {
       </div>
 
       <div className={`w-modal ${modalStatus ? null : "hidden"}`} id="changeFunctionality">
-        <Modal modalToggle={modalToggle} modalDelete={modalDelete} />
-        <Backdrop modalToggle={modalToggle} />
+        <Modal actionData={actionData} setTodoArray={setTodoArray} setModalState={setModalState} modalDelete={modalDelete} />
+        <Backdrop setModalState={setModalState} />
       </div>
     </React.Fragment>
   );

@@ -1,5 +1,12 @@
-function Backdrop({ modalToggle }) {
-  return <div className="backdrop" onClick={modalToggle}></div>;
+function Backdrop({ setModalState }) {
+  return (
+    <div
+      className="backdrop"
+      onClick={function () {
+        setModalState(false);
+      }}
+    ></div>
+  );
 }
 
 export default Backdrop;

@@ -5,52 +5,62 @@ import CSSModuleButton from "../General/CSSModuleButton";
 function AddForm({ toggleAddForm, setTodoArray }) {
   const [title, setTitle] = useState("");
   const [year, setYear] = useState(new Date().getFullYear());
-  const [isValid, setIsValid] = useState(true);
+  const [titleIsValid, setTitleIsValid] = useState(true);
+  const [yearIsValid, setYearIsValid] = useState(true);
 
   const addNewTodo = function (event) {
     event.preventDefault();
+
     if (title.trim().length === 0) {
-      setIsValid(false);
-      return;
+      setTitleIsValid(false);
+
+      if (isNaN(year) || year.toString().trim().length !== 4) {
+        setYearIsValid(false);
+      }
+    } else if (isNaN(year) || year.toString().trim().length !== 4) {
+      setYearIsValid(false);
+    } else {
+      setTodoArray((prevData) => {
+        return [
+          {
+            title: title,
+            year: +year,
+          },
+          ...prevData,
+        ].sort((a, b) => a.year - b.year);
+      });
+
+      toggleAddForm();
     }
-
-    setTodoArray((prevData) => {
-      return [
-        {
-          title: title,
-          year: +year,
-        },
-        ...prevData,
-      ].sort((a, b) => a.year - b.year);
-    });
-
-    toggleAddForm();
   };
 
   return (
     <div>
       <form onSubmit={addNewTodo}>
         <div className={"form_title"}>
-          <section className={isValid ? "" : "invalid_title"}>
+          <section className={titleIsValid ? "" : "invalid_section"}>
             <label>Title : </label>
             <input
               type="text"
               value={title}
               onChange={(event) => {
                 if (event.target.value.trim().length > 0) {
-                  setIsValid(true);
+                  setTitleIsValid(true);
                 }
                 setTitle(event.target.value);
               }}
             />
           </section>
 
-          <section>
+          <section className={yearIsValid ? "" : "invalid_section"}>
             <label>Year : </label>
             <input
               type="text"
               value={year}
               onChange={(event) => {
+                if (!isNaN(yearIsValid)) {
+                  setYearIsValid(true);
+                }
                 setYear(event.target.value);
               }}
             />

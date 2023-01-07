@@ -1,16 +1,16 @@
 import React from "react";
 import { useState } from "react";
 
-function ContentChange({ modalToggle, sendInfo }) {
+function ContentChange({ setModalState, setTodoArray, actionData }) {
   const [newTitle, setNewTitle] = useState("");
-
-  const changeTitle = function (event) {
-    setNewTitle(event.target.value);
-  };
 
   const submitForm = function (event) {
     event.preventDefault();
-    sendInfo(newTitle);
+    // setTodoArray((prevData) => {
+    //   return prevData.filter((value) => +value.id !== +actionData);
+    // });
+
+    setModalState(false);
   };
 
   return (
@@ -19,11 +19,27 @@ function ContentChange({ modalToggle, sendInfo }) {
         <form onSubmit={submitForm}>
           <div className="form_title">
             <label>Please, provide title:</label>
-            <input type="text" onChange={changeTitle} />
+            <input
+              type="text"
+              value={newTitle}
+              onChange={(event) => {
+                setNewTitle(event.target.value);
+              }}
+            />
           </div>
           <div>
-            <button type="submit" className="buttton" onClick={modalToggle}>
+            <button type="submit" className="buttton">
               OK
+            </button>
+
+            <button
+              type="button"
+              className="buttton"
+              onClick={function () {
+                setModalState(false);
+              }}
+            >
+              Cancel
             </button>
           </div>
         </form>

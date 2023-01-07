@@ -163,10 +163,10 @@ header {
   color: #ffffff;
 }
 
-.invalid_title label {
+.invalid_section label {
   color: #860000;
 }
 
-.invalid_title input {
+.invalid_section input {
   border-color: #ff6f6f;
 }
