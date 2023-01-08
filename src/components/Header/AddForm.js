@@ -25,6 +25,7 @@ function AddForm({ toggleAddForm, setTodoArray }) {
           {
             title: title,
             year: +year,
+            id: Math.random() * 100, // ! Has to be changed since it's not 100% unique
           },
           ...prevData,
         ].sort((a, b) => a.year - b.year);

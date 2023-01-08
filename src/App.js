@@ -102,7 +102,7 @@ function App() {
       </div>
 
       <div className={`w-modal ${modalStatus ? null : "hidden"}`} id="changeFunctionality">
-        <Modal actionData={actionData} setTodoArray={setTodoArray} setModalState={setModalState} modalDelete={modalDelete} />
+        <Modal actionData={actionData} todoArray={todoArray} setTodoArray={setTodoArray} setModalState={setModalState} modalDelete={modalDelete} />
         <Backdrop setModalState={setModalState} />
       </div>
     </React.Fragment>

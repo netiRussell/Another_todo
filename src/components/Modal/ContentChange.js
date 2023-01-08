@@ -1,14 +1,19 @@
 import React from "react";
 import { useState } from "react";
 
-function ContentChange({ setModalState, setTodoArray, actionData }) {
+function ContentChange({ setModalState, todoArray, actionData }) {
   const [newTitle, setNewTitle] = useState("");
 
   const submitForm = function (event) {
     event.preventDefault();
-    // setTodoArray((prevData) => {
-    //   return prevData.filter((value) => +value.id !== +actionData);
-    // });
+
+    for (let i = 0; i < todoArray.length; i++) {
+      if (+todoArray[i].id === +actionData) {
+        todoArray[i].title = newTitle;
+        setNewTitle("");
+        break;
+      }
+    }
 
     setModalState(false);
   };
