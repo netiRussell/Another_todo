@@ -1,5 +1,7 @@
 import React from "react";
 import { useState } from "react";
+import ReactDOM from "react-dom";
+
 import Modal from "./components/Modal/Modal";
 import Backdrop from "./components/Modal/Backdrop";
 import Filter from "./components/Header/Filter";
@@ -101,10 +103,13 @@ function App() {
         </ul>
       </div>
 
-      <div className={`w-modal ${modalStatus ? null : "hidden"}`} id="changeFunctionality">
-        <Modal actionData={actionData} todoArray={todoArray} setTodoArray={setTodoArray} setModalState={setModalState} modalDelete={modalDelete} />
-        <Backdrop setModalState={setModalState} />
-      </div>
+      {ReactDOM.createPortal(
+        <div className={`w-modal ${modalStatus ? null : "hidden"}`} id="changeFunctionality">
+          <Modal actionData={actionData} todoArray={todoArray} setTodoArray={setTodoArray} setModalState={setModalState} modalDelete={modalDelete} />
+          <Backdrop setModalState={setModalState} />
+        </div>,
+        document.querySelector("body")
+      )}
     </React.Fragment>
   );
 }
