@@ -1,15 +1,18 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import StyledButton from "../General/StyledButton";
 import CSSModuleButton from "../General/CSSModuleButton";
 
 function AddForm({ toggleAddForm, setTodoArray }) {
-  const [title, setTitle] = useState("");
-  const [year, setYear] = useState(new Date().getFullYear());
+  const titleInputRef = useRef();
+  const yearInputRef = useRef();
+
   const [titleIsValid, setTitleIsValid] = useState(true);
   const [yearIsValid, setYearIsValid] = useState(true);
 
   const addNewTodo = function (event) {
     event.preventDefault();
+    const title = titleInputRef.current.value;
+    const year = yearInputRef.current.value;
 
     if (title.trim().length === 0) {
       setTitleIsValid(false);
@@ -43,12 +46,11 @@ function AddForm({ toggleAddForm, setTodoArray }) {
             <label>Title : </label>
             <input
               type="text"
-              value={title}
+              ref={titleInputRef}
               onChange={(event) => {
                 if (event.target.value.trim().length > 0) {
                   setTitleIsValid(true);
                 }
-                setTitle(event.target.value);
               }}
             />
           </section>
@@ -57,12 +59,11 @@ function AddForm({ toggleAddForm, setTodoArray }) {
             <label>Year : </label>
             <input
               type="text"
-              value={year}
+              ref={yearInputRef}
               onChange={(event) => {
                 if (!isNaN(yearIsValid)) {
                   setYearIsValid(true);
                 }
-                setYear(event.target.value);
               }}
             />
           </section>
