@@ -1,21 +1,22 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useContext } from "react";
+import ModalProps from "../../store/modal-props";
 
-function ContentChange({ setModalState, todoArray, actionData }) {
+function ContentChange() {
+  const ctx = useContext(ModalProps);
   const [newTitle, setNewTitle] = useState("");
 
   const submitForm = function (event) {
     event.preventDefault();
 
-    for (let i = 0; i < todoArray.length; i++) {
-      if (+todoArray[i].id === +actionData) {
-        todoArray[i].title = newTitle;
+    for (let i = 0; i < ctx.todoArray.length; i++) {
+      if (+ctx.todoArray[i].id === +ctx.actionData) {
+        ctx.todoArray[i].title = newTitle;
         setNewTitle("");
         break;
       }
     }
 
-    setModalState(false);
+    ctx.setModalState(false);
   };
 
   return (
@@ -41,7 +42,7 @@ function ContentChange({ setModalState, todoArray, actionData }) {
               type="button"
               className="buttton"
               onClick={function () {
-                setModalState(false);
+                ctx.setModalState(false);
               }}
             >
               Cancel

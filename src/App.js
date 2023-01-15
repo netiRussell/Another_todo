@@ -1,6 +1,6 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
+import ModalProps from "./store/modal-props";
 
 import Modal from "./components/Modal/Modal";
 import Backdrop from "./components/Modal/Backdrop";
@@ -105,7 +105,17 @@ function App() {
 
       {ReactDOM.createPortal(
         <div className={`w-modal ${modalStatus ? null : "hidden"}`} id="changeFunctionality">
-          <Modal actionData={actionData} todoArray={todoArray} setTodoArray={setTodoArray} setModalState={setModalState} modalDelete={modalDelete} />
+          <ModalProps.Provider
+            value={{
+              actionData: actionData,
+              todoArray: todoArray,
+              setTodoArray: setTodoArray,
+              setModalState: setModalState,
+            }}
+          >
+            <Modal modalDelete={modalDelete} />
+          </ModalProps.Provider>
+
           <Backdrop setModalState={setModalState} />
         </div>,
         document.querySelector("body")

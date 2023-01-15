@@ -1,12 +1,8 @@
 import ContentDelete from "./ContentDelete";
 import ContentChange from "./ContentChange";
 
-function Modal({ modalDelete, setModalState, actionData, setTodoArray, todoArray }) {
-  return (
-    <div className="modal">
-      {modalDelete === true ? <ContentDelete setTodoArray={setTodoArray} actionData={actionData} setModalState={setModalState} /> : <ContentChange todoArray={todoArray} actionData={actionData} setModalState={setModalState} />}
-    </div>
-  );
+function Modal({ modalDelete }) {
+  return <div className="modal">{modalDelete === true ? <ContentDelete /> : <ContentChange />}</div>;
 }
 
 export default Modal;

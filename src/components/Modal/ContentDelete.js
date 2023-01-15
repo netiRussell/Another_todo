@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
+import ModalProps from "../../store/modal-props";
 
-function ContentDelete({ setModalState, actionData, setTodoArray }) {
+function ContentDelete() {
+  const ctx = useContext(ModalProps);
+
   const deleteTodo = function (event) {
     event.preventDefault();
 
-    setTodoArray((prevData) => {
-      return prevData.filter((value) => +value.id !== +actionData);
+    ctx.setTodoArray((prevData) => {
+      return prevData.filter((value) => +value.id !== +ctx.actionData);
     });
 
-    setModalState(false);
+    ctx.setModalState(false);
   };
 
   return (
@@ -22,7 +25,7 @@ function ContentDelete({ setModalState, actionData, setTodoArray }) {
           type="button"
           className="buttton"
           onClick={function () {
-            setModalState(false);
+            ctx.setModalState(false);
           }}
         >
           Actually... No
